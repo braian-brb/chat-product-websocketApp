@@ -1,11 +1,9 @@
-const options = {
-    client: 'mysql',
-    connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'segundoIntentoBD'
-    }
+export const options = {
+  client: "mysql",
+  connection: {
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "segundoIntentoBD",
+  },
 };
-
-module.exports = {options};
