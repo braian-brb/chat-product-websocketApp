@@ -1,0 +1,36 @@
+{{!-- 
+<h3>
+    {{#if products}}
+        {{#each products}}
+            <div class="product">
+                <h2>{{this.name}}</h2>
+                <p>{{this.price}}</p>
+                <img src={{this.image}} alt="" width="150px">
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No products found</p>
+    {{/if}}
+    
+</h3>
+// hacer esto mismo pero en una tabla --}}
+
+<table>
+    {{#if products}}
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+        {{#each products}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td><img src={{this.image}} alt="" width="50px"></td>
+            </tr>
+        {{/each}}
+    
+    {{else}}
+        <p>No products found</p>
+    {{/if}}
+</table>

@@ -21,6 +21,22 @@ const { Server: IOServer } = require("socket.io");
 
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
+// ****************************** HBS ****************************
+import {create} from "express-handlebars";
+import path from "path";
+
+const exphbs = create({
+  extname: '.hbs',
+  layoutsDir: path.join(app.get("views"), "layouts"),
+  partialsDir: path.join(app.get("views"), "partials"),
+  defaultLayout:'default',
+});
+
+app.engine(".hbs", exphbs.engine);
+app.set("view engine", ".hbs");
+
+// ****************************** FAKER ****************************
+import { faker } from "@faker-js/faker";
 
 httpServer.listen(8080, function () {
   console.log("Servidor corriendo en http://localhost:8080");
@@ -38,7 +54,21 @@ io.on("connection", async function (socket) {
     await containerProducts.saveProduct(product);
     const products = await containerProducts.getProducts();
     io.sockets.emit("container", products);
-  });
+  }); 
+});
+
+// ****************************** TEST FAKER ****************************
+app.get("/api/products-test", async function (req, res) {
+  let productsFaker = [];
+  for (let i = 0; i < 5; i++) {
+    productsFaker.push({
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      image: faker.image.image(),
+    });
+  }
+ // res.send(productsFaker);
+  res.render('table', {'products': productsFaker})
 });
 
 // ****************************** CENTRO DE MENSAJES ****************************
