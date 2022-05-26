@@ -1,5 +1,6 @@
 // ****************************** DESAFIO ENTREGABLE 16
-const express = require("express");
+//const express = require("express");
+import express from "express";
 const app = express();
 
 app.use(express.json());
@@ -16,8 +17,10 @@ import { options as mariaDB } from "./options/mariaDB.js";
 const containerProducts = new ContainerProducts(sqliteDB);
 const containerMessages = new ContainerMessages(mariaDB);
 
-const { Server: HttpServer } = require("http");
-const { Server: IOServer } = require("socket.io");
+//const { Server: HttpServer } = require("http");
+//const { Server: IOServer } = require("socket.io");
+import { Server as HttpServer } from "http";
+import { Server as IOServer } from "socket.io";
 
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
@@ -41,8 +44,6 @@ import { faker } from "@faker-js/faker";
 httpServer.listen(8080, function () {
   console.log("Servidor corriendo en http://localhost:8080");
 });
-
-
 
 // ****************************** LISTA DE PRODUCTOS ****************************
 io.on("connection", async function (socket) {

@@ -1,5 +1,9 @@
-const { options } = require("../options/sqliteDB");
-const knex = require('knex')(options);
+//const { options } = require("../options/sqliteDB");
+//const knex = require('knex')(options);
+
+import options from "../options/sqliteDB.js";
+import knexModule from 'knex';
+const knex = knexModule(options);
 
 //Se crea una nueva tabla con la funcion create table del esquema knex.js definimos el esquema para que contenga tres columnas id nombre y precio
 

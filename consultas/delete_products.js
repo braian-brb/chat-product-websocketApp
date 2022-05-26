@@ -1,5 +1,6 @@
-const { options } = require("./options/mariaDB.js");
-const knex = require('knex')(options);
+import options from "../options/sqliteDB.js";
+import knexModule from 'knex';
+const knex = knexModule(options);
 
 
 //delete articulos
