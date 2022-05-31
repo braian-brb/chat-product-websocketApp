@@ -12,6 +12,7 @@ import { containerProducts } from './controllers/products.controllers.js';
 import { containerMessages } from './controllers/messages.controllers.js';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 
 
@@ -33,6 +34,7 @@ app.use(morgan('dev'));
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
 app.use(
   session({
     store: MongoStore,

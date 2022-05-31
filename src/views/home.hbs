@@ -1,15 +1,9 @@
 <div class="container-sm container-nameSession mt-4">
     {{#if name}}
     <h1>Welcome {{name}}!</h1>
-    <form action="/logout" method="POST">
-
-        <button>
+        <button onclick="location.href = '/logout'">
             Logout!
         </button>
-    </form>
-    {{else}}
-    <h1>You must login in /login</h1>
-    <form action="/login"><button>Login!</button></form>
     {{/if}}
 
 </div>
