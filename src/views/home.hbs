@@ -1,1 +1,71 @@
-<h1>Hello world</h1>
+<div class="container-sm container-nameSession mt-4">
+    {{#if name}}
+    <h1>Welcome {{name}}!</h1>
+    <form action="/logout" method="POST">
+
+        <button>
+            Logout!
+        </button>
+    </form>
+    {{else}}
+    <h1>You must login in /login</h1>
+    <form action="/login"><button>Login!</button></form>
+    {{/if}}
+
+</div>
+<div id='box' class='container-sm mb-4 container-table'>
+    <div class='container-sm'>
+        <form onsubmit='return addProductForm(this)'>
+            <div class='header-product mt-4'>
+                <h1>New Product</h1>
+            </div>
+            <div class='form-group'>
+                <label for='name'>Name</label>
+                <input type='text' class='form-control' id='name' name='name' placeholder='Name' required />
+            </div>
+            <div class='form-group'>
+                <label for='price'>Price</label>
+                <input type='number' class='form-control' id='price' name='price' placeholder='Price' required />
+            </div>
+            <div class='form-group'>
+                <label for='thumbnail'>Thumbnail</label>
+                <input type='text' class='form-control' id='thumbnail' placeholder='Image URL' />
+            </div>
+            <button type='submit' value='send' class='btn btn-success'>Submit</button>
+        </form>
+        <div class='container-sm' id='container-products'>
+            <h1 class='header-list'>List Products</h1>
+            <div id='products-view-container'>
+                <div class='container-sm' id='container-product-table'>
+                    <table class='table' id='table-products'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Name</th>
+                                <th scope='col'>Price</th>
+                                <th scope='col'>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody id='tbody-products'>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{! MESSAGES }}
+    <div class='container-sm mt-4 mb-4 container-messages'>
+        <h1>Message's Center</h1>
+        <form onsubmit='return addMessage(this)'>
+            <input class='form-control mb-2' type='email' id='email' placeholder='Your email' required />
+            <div id='messages-view-container'></div>
+            <form class='form-inline mt-2'>
+                <div class='form-group mx-sm3 mb-2' id='container-messages-form'>
+                    <textarea class='form-control' id='textarea-message' rows='2'
+                        placeholder='Insert you message...'></textarea>
+                    <button class='btn btn-primary mt-2' type='submit' value='send'>Send!</button>
+                </div>
+            </form>
+        </form>
+    </div>
+</div>
