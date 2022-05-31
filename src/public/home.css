@@ -1,19 +1,30 @@
 body {
-    background-color: rgb(196, 204, 230);
-  }
-  
-  .message-email {
-    font-style: bold;
-    color: blue;
-  }
-  
-  .message-date {
-    font-style: italic;
-    color: brown;
-  }
-  
-  .message-text {
-    font-style: italic;
-    color: green;
-  }
-  
+  background-color: rgb(196, 204, 230);
+}
+
+.message-email {
+  font-style: bold;
+  color: blue;
+}
+
+.message-date {
+  font-style: italic;
+  color: brown;
+}
+
+.message-text {
+  font-style: italic;
+  color: green;
+}
+.container-nameSession {
+  display: flex;
+  /* space beetwen */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-login {
+  display: grid;
+  grid-template-rows: 100vh;
+  place-items: center;
+}

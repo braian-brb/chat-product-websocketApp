@@ -10,12 +10,20 @@ import { Server as HttpServer } from 'http';
 import { Server as IOServer } from 'socket.io';
 import { containerProducts } from './controllers/products.controllers.js';
 import { containerMessages } from './controllers/messages.controllers.js';
+import session from 'express-session';
+import connectMongo from 'connect-mongo';
+import dotenv from 'dotenv'
+
 
 export const app = express();
 export const httpServer = new HttpServer(app);
 export const io = new IOServer(httpServer);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const MongoStore = connectMongo.create({
+  mongoUrl: process.env.MONGO_URL,
+  ttl: (60 * 10),
+})
 /*------- SETTINGS ------- */
 app.set('PORT', process.env.PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +33,14 @@ app.use(morgan('dev'));
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+app.use(
+  session({
+    store: MongoStore,
+    secret: '123456789!@#$%^',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 /*------- ROUTES ------- */
 app.use('/', router);
 /*------- VIEWS ------- */
