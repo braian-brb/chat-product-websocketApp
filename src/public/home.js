@@ -32,3 +32,35 @@ function addProductForm() {
   socket.emit('new-product', productObj);
   return false;
 }
+// ****************************** MESSAGE CENTER ****************************
+function addMessage() {
+  const messageObj = {
+    email: document.getElementById('email').value,
+    message: document.getElementById('textarea-message').value,
+    date: new Date().toLocaleString(),
+  };
+  document.getElementById('textarea-message').value = '';
+  socket.emit('new-message', messageObj);
+  return false;
+}
+const templateMessage = Handlebars.compile(`
+    {{#if messages}}
+        {{#each messages}}
+            <div class="message-container">
+                <span class="message-email">{{email}}</span>
+                <span class="message-date">{{date}}</span>
+                <p class="message-text">{{message}}</p>
+            </div>
+        {{/each}}
+        {{else}}
+            <p>No messages found</p>
+    {{/if}}                     
+    `);
+function renderMessages(messages) {
+  const html = templateMessage({ messages });
+  document.getElementById('messages-view-container').innerHTML = html;
+}
+
+socket.on('messages-list', (messages) => {
+  renderMessages(messages);
+});

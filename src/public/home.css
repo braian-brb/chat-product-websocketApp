@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(196, 204, 230);
+  }
+  
+  .message-email {
+    font-style: bold;
+    color: blue;
+  }
+  
+  .message-date {
+    font-style: italic;
+    color: brown;
+  }
+  
+  .message-text {
+    font-style: italic;
+    color: green;
+  }
+  

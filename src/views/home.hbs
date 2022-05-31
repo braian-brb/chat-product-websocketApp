@@ -53,5 +53,19 @@
             </div>
         </div>
     </div>
-
+    {{! MESSAGES }}
+    <div class='container-sm mt-4 mb-4 container-messages'>
+        <h1>Message's Center</h1>
+        <form onsubmit='return addMessage(this)'>
+            <input class='form-control mb-2' type='email' id='email' placeholder='Your email' required />
+            <div id='messages-view-container'></div>
+            <form class='form-inline mt-2'>
+                <div class='form-group mx-sm3 mb-2' id='container-messages-form'>
+                    <textarea class='form-control' id='textarea-message' rows='2'
+                        placeholder='Insert you message...'></textarea>
+                    <button class='btn btn-primary mt-2' type='submit' value='send'>Send!</button>
+                </div>
+            </form>
+        </form>
+    </div>
 </div>

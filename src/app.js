@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import { Server as HttpServer } from 'http';
 import { Server as IOServer } from 'socket.io';
 import { containerProducts } from './controllers/products.controllers.js';
+import { containerMessages } from './controllers/messages.controllers.js';
 
 export const app = express();
 export const httpServer = new HttpServer(app);
@@ -48,3 +49,15 @@ io.on('connection', async (socket) => {
     io.sockets.emit('products-list', products);
   });
 });
+// ****************************** MESSAGE CENTER ****************************//
+io.on('connection', async (socket) => {
+  const messages = await containerMessages.getAll();
+  socket.emit('messages-list', messages);
+
+  socket.on('new-message', async (message) => {
+    await containerMessages.save(message);
+    const messages = await containerMessages.getAll();
+    io.sockets.emit('messages-list', messages);
+  });
+});
+// ****************************** END WEBSOCKET ****************************//
