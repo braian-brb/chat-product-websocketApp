@@ -6,8 +6,14 @@ import morgan from 'morgan';
 import { dirname } from 'path';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Server as HttpServer } from 'http';
+import { Server as IOServer } from 'socket.io';
+import { containerProducts } from './controllers/products.controllers.js';
 
 export const app = express();
+export const httpServer = new HttpServer(app);
+export const io = new IOServer(httpServer);
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /*------- SETTINGS ------- */
 app.set('PORT', process.env.PORT || 8080);
@@ -30,3 +36,15 @@ app.engine(
       partialsDir: path.join(__dirname, 'views', 'partials'),
     })
   );
+// ****************************** PRODUCTS LIST ****************************//
+io.on('connection', async (socket) => {
+  console.log('a user connected');
+  const products = await containerProducts.getAll();
+  socket.emit('products-list', products);
+
+  socket.on('new-product', async (product) => {
+    await containerProducts.save(product);
+    const products = await containerProducts.getAll();
+    io.sockets.emit('products-list', products);
+  });
+});

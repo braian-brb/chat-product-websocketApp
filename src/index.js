@@ -1,7 +1,7 @@
-import { app } from './app.js';
+import { app, httpServer } from './app.js';
 
 const PORT = app.get('PORT');
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server on http://localhost:${PORT}`);
 });
