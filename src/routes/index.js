@@ -3,7 +3,6 @@ import { faker } from '@faker-js/faker';
 
 export const router = Router();
 
-
 // ****************************** TEST FAKER ****************************
 router.get('/api/products-test', async (req, res) => {
   const productsFaker = [];
@@ -32,6 +31,14 @@ router.get('/home', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login');
 });
+
+router.get('/logout', (req, res) => {
+  const name = req.session.name;
+  req.session.destroy((err) => {
+    if (!err) res.render('logout', { name });
+    else res.send({ status: 'Logout ERROR', body: err });
+  });
+});
 //-------------- POST ---------------//
 router.post('/login', (req, res) => {
   req.session.name = req.body.name;
@@ -39,10 +46,3 @@ router.post('/login', (req, res) => {
   res.redirect('/home');
 });
 
-router.post('/logout', (req, res) => {
-  const name = req.session.name;
-  req.session.destroy((err) => {
-    if (!err) res.render('logout', { name });
-    else res.send({ status: 'Logout ERROR', body: err });
-  });
-});
