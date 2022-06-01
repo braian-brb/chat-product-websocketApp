@@ -13,7 +13,7 @@ import { containerMessages } from './controllers/messages.controllers.js';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import dotenv from 'dotenv'
-
+dotenv.config()
 
 export const app = express();
 export const httpServer = new HttpServer(app);
