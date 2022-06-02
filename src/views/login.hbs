@@ -1,13 +1,12 @@
-<div class="card-login card">
-    <div class="card-header">
-        <h1 class="card-title">Login</h1>
-        <form action="/login" method="POST">
-            <div class='form-group'>
-                <label for="name">Name</label>
-                <input type="text" name="name" placeholder="Write your name..." autofocus>
-            </div>
-            <div class='form-group'>
-                <button class="btn btn-primary">Login!</button>
-            </div>
+    <div class="text-center container-form">
+        <form class="form-signin" action="/login" method="post">
+            <img class="mb-4" src="https://imgs.search.brave.com/2zdOePUnpW3OdCHL_BgKbWA2OsVyIEaDs5SQtX5L5eY/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jbGlw/Z3JvdW5kLmNvbS9p/bWFnZXMvaWNvbi1s/b2dpbi1wbmctNi5w/bmc" alt="" width="72"
+                height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputName" class="sr-only">Name</label>
+            <input type="text" id="inputName" class="form-control" placeholder="Name" required=""
+                autofocus="" name="name">
+            <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Sign in</button>
+            
         </form>
     </div>
