@@ -1,7 +1,8 @@
 import express from 'express';
 import { urlencoded, json, } from 'express';
 import { engine } from 'express-handlebars';
-import { router } from './routes/index.js';
+import { router as indexRouter } from './routes/index.routes.js';
+import { router as usersRouter } from './routes/users.routes.js';
 import morgan from 'morgan';
 import { dirname } from 'path';
 import path from 'path';
@@ -15,6 +16,7 @@ import connectMongo from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 dotenv.config()
+import flash from 'connect-flash';
 
 export const app = express();
 export const httpServer = new HttpServer(app);
@@ -43,8 +45,16 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(flash());
+/*------- GLOBAL VAR ------- */
+app.use((req, res, next) =>{
+  res.locals.success_msg = req.flash('success_msg');
+  next();
+})
+
 /*------- ROUTES ------- */
-app.use('/', router);
+app.use(indexRouter);
+app.use('/users', usersRouter)
 /*------- VIEWS ------- */
 app.engine(
     '.hbs',

@@ -1,4 +1,5 @@
 import { app, httpServer } from './app.js';
+import './database.js'
 
 const PORT = app.get('PORT');
 
