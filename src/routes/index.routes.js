@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { faker } from '@faker-js/faker';
+import { helpers } from '../middlewares/isAuth.js'
+const { isAuth } = helpers;
 
 export const router = Router();
 
@@ -17,15 +19,11 @@ router.get('/api/products-test', async (req, res) => {
 });
 //-------------- GETTERS ---------------//
 router.get('/', (req, res) => {
-  const name = req.session.name;
-  if (!name) res.redirect('/login');
-  else res.redirect('/home');
+  res.redirect('/users/signin');
 });
 
-router.get('/home', (req, res) => {
-  const name = req.session.name;
-  if (!name) res.redirect('/login');
-  else res.render('home', { name });
+router.get('/home', isAuth, (req, res) => {
+  res.render('home')
 });
 
 router.get('/login', (req, res) => {

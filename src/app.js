@@ -17,6 +17,8 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 dotenv.config()
 import flash from 'connect-flash';
+import passport from 'passport'
+import './middlewares/passport.js'
 
 export const app = express();
 export const httpServer = new HttpServer(app);
@@ -46,10 +48,16 @@ app.use(
   })
 );
 app.use(flash());
+//PASSPORT NECESITA QUE PRIMERO ESTE EL SESSION PORQUE HACE USO DE EL
+app.use(passport.initialize());
+app.use(passport.session())
+
 /*------- GLOBAL VAR ------- */
 app.use((req, res, next) =>{
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error')
+  res.locals.user = req.user || null
   next();
 })
 
