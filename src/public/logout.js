@@ -1,5 +1,5 @@
-function newLocation() {
-    window.location.href="login";
+function newLocation () {
+  window.location.href = 'users/signin'
 }
 
-setTimeout(newLocation, 2000);
+setTimeout(newLocation, 2000)

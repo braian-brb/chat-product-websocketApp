@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   },
   "homepage": "https://github.com/braian-brb/coderhouse-desafio-16#readme",
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "standard": "^17.0.0"
   },
   "dependencies": {
     "@faker-js/faker": "^7.1.0",
@@ -41,5 +43,8 @@
     "passport-local": "^1.0.0",
     "socket.io": "^4.5.1",
     "sqlite3": "^5.0.8"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }

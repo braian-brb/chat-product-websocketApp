@@ -1,40 +1,39 @@
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import User from '../models/User.js';
+import passport from 'passport'
+import { Strategy as LocalStrategy } from 'passport-local'
+import User from '../models/User.js'
 
 passport.use(
   new LocalStrategy(
     {
       usernameField: 'email',
-      passwordField: 'password',
+      passwordField: 'password'
     },
     async (email, password, done) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
       if (!user) {
-        return done(null, false, { message: 'Not user found' });
+        return done(null, false, { message: 'Not user found' })
       } else {
-        const matchPassBool = await user.matchPassword(password);
+        const matchPassBool = await user.matchPassword(password)
         if (!matchPassBool) {
-          return done(null, false, { message: 'Incorrect Password' });
+          return done(null, false, { message: 'Incorrect Password' })
         } else {
-          return done(null, user);
+          return done(null, user)
         }
       }
     }
   )
-);
+)
 
-passport.serializeUser((user, done) =>{
-    done(null, user.id)
-});
-passport.deserializeUser((id, done) =>{
-    User.findById(id, (err, user) =>{
-        done(err,user)
-    })
-    /* 
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user)
+  })
+  /*
     Se puede hacer sin cb con async await, ver como manejar el err
     const user = await User.findById(id)
     done (null, user)
     */
-
 })

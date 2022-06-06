@@ -1,7 +1,7 @@
-<div class="container-sm container-nameSession mt-4">
+<div class="container-sm container-nameSession card mb-4 pt-0">
     {{#if name}}
-    <h1>Welcome {{name}}!</h1>
-        <button onclick="location.href = '/logout'">
+    <h1 class="mt-2">Welcome {{name}}!</h1>
+        <button onclick="location.href = '/logout'" class="btn btn-danger mb-2">
             Logout!
         </button>
     {{/if}}
@@ -10,7 +10,7 @@
 <div id='box' class='container-sm mb-4 container-table'>
     <div class='container-sm'>
         <form onsubmit='return addProductForm(this)'>
-            <div class='header-product mt-4'>
+            <div class='header-product'>
                 <h1>New Product</h1>
             </div>
             <div class='form-group'>
@@ -23,7 +23,7 @@
             </div>
             <div class='form-group'>
                 <label for='thumbnail'>Thumbnail</label>
-                <input type='text' class='form-control' id='thumbnail' placeholder='Image URL' />
+                <input type='text' class='form-control mb-2' id='thumbnail' placeholder='Image URL' />
             </div>
             <button type='submit' value='send' class='btn btn-success'>Submit</button>
         </form>

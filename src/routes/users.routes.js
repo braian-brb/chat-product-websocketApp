@@ -1,16 +1,15 @@
 import { Router } from 'express'
 import { usersCtrl } from '../controllers/users.controllers.js'
 
-export const router = Router();
+export const router = Router()
 
 const {
-    renderSignUpForm,
-    renderSignInForm,
-    singUp,
-    signIn,
-    logout
-} = usersCtrl;
-
+  renderSignUpForm,
+  renderSignInForm,
+  singUp,
+  signIn,
+  logout
+} = usersCtrl
 
 router.get('/signup', renderSignUpForm)
 router.post('/signup', singUp)

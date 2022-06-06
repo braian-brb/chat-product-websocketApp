@@ -1,12 +1,12 @@
-import {options as sqliteDB} from '../options/sqliteDB.js';
-import knexModule from 'knex';
+import { options as sqliteDB } from '../options/sqliteDB.js'
+import knexModule from 'knex'
 const knex = knexModule(sqliteDB);
 
 (async () => {
   try {
-    await knex('messages').delete();
-    console.log('Delete messages has been successfully');
+    await knex('messages').delete()
+    console.log('Delete messages has been successfully')
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-})();
+})()
