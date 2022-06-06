@@ -19,15 +19,14 @@ router.get('/api/products-test', async (req, res) => {
 })
 // -------------- GETTERS ---------------//
 router.get('/', (req, res) => {
-  res.redirect('/home')
+  res.redirect('/users/signin')
 })
 
 router.get('/home', isAuth, (req, res) => {
   const { name } = req.user
-
   res.render('home', { name })
 })
-
+// login normal session
 router.get('/login', (req, res) => {
   res.render('login')
 })
