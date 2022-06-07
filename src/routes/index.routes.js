@@ -23,8 +23,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/home', isAuth, (req, res) => {
-  const { name } = req.user
-  res.render('home', { name })
+  const { email } = req.user
+  res.render('home', { email })
 })
 // login normal session
 router.get('/login', (req, res) => {
@@ -32,9 +32,9 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  const { name } = req.user
+  const { email } = req.user
   req.session.destroy((err) => {
-    if (!err) res.render('logout', { name })
+    if (!err) res.render('logout', { email })
     else res.send({ status: 'Logout ERROR', body: err })
   })
 })
