@@ -2,6 +2,8 @@ import express, { urlencoded, json } from 'express'
 import { engine } from 'express-handlebars'
 import { router as indexRouter } from './routes/index.routes.js'
 import { router as usersRouter } from './routes/users.routes.js'
+import { router as infoRouter } from './routes/info.routes.js'
+import { router as randomRouter } from './routes/random.routes.js'
 import morgan from 'morgan'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -27,8 +29,9 @@ const MongoStore = connectMongo.create({
   mongoUrl: process.env.MONGO_URL,
   ttl: (60 * 10)
 })
+
 /* ------- SETTINGS ------- */
-app.set('PORT', process.env.PORT || 8080)
+// app.set('PORT', PORT || 8080)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', '.hbs')
 /* ------- MIDLEWARES ------- */
@@ -62,6 +65,8 @@ app.use((req, res, next) => {
 /* ------- ROUTES ------- */
 app.use(indexRouter)
 app.use('/users', usersRouter)
+app.use(infoRouter)
+app.use('/api/random', randomRouter)
 /* ------- VIEWS ------- */
 app.engine(
   '.hbs',
