@@ -1,10 +1,8 @@
-﻿# Desafio Coderhouse 26
+﻿# Desafio Coderhouse 26 & 28
 - Websocket
 - SQLite
 - MongoAtlas
 - Session
 
-# .env
-- MONGO_URL
-- USER_DB
-- PASSWORD_DB
+# example.env.txt
+
