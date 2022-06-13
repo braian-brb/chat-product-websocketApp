@@ -1,8 +1,8 @@
-﻿# Desafio Coderhouse 26 & 28
+﻿# Desafio Coderhouse Clase 30
 - Websocket
 - SQLite
 - MongoAtlas
 - Session
 
-# example.env.txt
+# ENV.EXAMPLE
 
