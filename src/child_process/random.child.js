@@ -9,7 +9,7 @@ function randomNumber (cant) {
   const output = {}
   const min = 1
   const max = 1000
-  for (let i = 0; i < (cant || 100000000); i++) {
+  for (let i = 0; i < (cant); i++) {
     const num = Math.floor(Math.random() * (max - min) + min)
 
     if (output[num]) {

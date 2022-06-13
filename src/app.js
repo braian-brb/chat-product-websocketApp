@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 /* ------- ROUTES ------- */
 app.use(indexRouter)
 app.use('/users', usersRouter)
-app.use(infoRouter)
+app.use('/info', infoRouter)
 app.use('/api/random', randomRouter)
 /* ------- VIEWS ------- */
 app.engine(

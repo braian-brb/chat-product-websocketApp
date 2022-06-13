@@ -1,0 +1,18 @@
+<div class="card border-danger mb-3" >
+  <div class="card-header">Info</div>
+  <div class="card-body">
+    <p class="card-text"><strong>Args:</strong> 
+    {{#each args}}
+    <ul>
+      <li>{{this}}</li>
+    </ul>
+    {{/each}}
+    </p>
+    <p class="card-text"><strong>sO:</strong> {{sO}} </p>
+    <p class="card-text"><strong>Node Version:</strong> {{nodeVersion}} </p>
+    <p class="card-text"><strong>Memory Rss:</strong> {{memoryRss}} </p>
+    <p class="card-text"><strong>Exec path:</strong> {{execPath}} </p>
+    <p class="card-text"><strong>Process ID:</strong> {{processID}} </p>
+    <p class="card-text"><strong>Path Act:</strong> {{pathAct}} </p>
+  </div>
+</div>

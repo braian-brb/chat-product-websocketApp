@@ -2,8 +2,8 @@ import { Router } from 'express'
 
 export const router = Router()
 
-router.get('/info', (req, res) => {
-  res.json({
+router.get('/', (req, res) => {
+  const info = {
     args: process.argv,
     sO: process.platform,
     nodeVersion: process.version,
@@ -11,5 +11,6 @@ router.get('/info', (req, res) => {
     execPath: process.execPath,
     processID: process.pid,
     pathAct: process.cwd()
-  })
+  }
+  res.render('info/info', info)
 })
