@@ -14,11 +14,10 @@ import { containerMessages } from './controllers/messages.controllers.js'
 import session from 'express-session'
 import connectMongo from 'connect-mongo'
 import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv'
 import flash from 'connect-flash'
 import passport from 'passport'
 import './middlewares/passport.js'
-dotenv.config()
+import config from './config/index.config.js'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -26,7 +25,7 @@ export const io = new IOServer(httpServer)
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const MongoStore = connectMongo.create({
-  mongoUrl: process.env.MONGO_URL,
+  mongoUrl: `${config.MONGO_DB_HOST}/${config.MONGO_DB_SESSIONS_DATABASE}?retryWrites=true&w=majority`,
   ttl: (60 * 10)
 })
 

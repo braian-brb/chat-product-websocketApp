@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js --port",
-    "dev": "nodemon src/index.js --port",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "lint": "eslint . --fix"
   },
   "repository": {

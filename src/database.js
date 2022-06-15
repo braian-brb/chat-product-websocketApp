@@ -1,14 +1,12 @@
 import mongoose from 'mongoose'
+import config from './config/index.config.js'
 
 const {
-  USER_APP_MONGODB_HOST,
-  USER_APP_MONGODB_DATABASE
-} = process.env
+  MONGO_DB_HOST,
+  MONGO_DB_USER_DATABASE
+} = config
 
-console.log(USER_APP_MONGODB_DATABASE)
-console.log(USER_APP_MONGODB_HOST)
-
-const MONGODB_URI = `${USER_APP_MONGODB_HOST}/${USER_APP_MONGODB_DATABASE}?retryWrites=true&w=majority`
+const MONGODB_URI = `${MONGO_DB_HOST}/${MONGO_DB_USER_DATABASE}?retryWrites=true&w=majority`
 
 mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
