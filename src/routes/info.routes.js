@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { cpus } from 'os'
 
 export const router = Router()
 
@@ -10,7 +11,9 @@ router.get('/', (req, res) => {
     memoryRss: process.memoryUsage.rss(),
     execPath: process.execPath,
     processID: process.pid,
-    pathAct: process.cwd()
+    pathAct: process.cwd(),
+    numCPUs: cpus().length
+
   }
   res.render('info/info', info)
 })
