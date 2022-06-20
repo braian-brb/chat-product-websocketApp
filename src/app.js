@@ -73,7 +73,15 @@ app.engine(
     extname: '.hbs',
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    partialsDir: path.join(__dirname, 'views', 'partials')
+    partialsDir: path.join(__dirname, 'views', 'partials'),
+    helpers: {
+      randomNumberToJSON: function (object) {
+        const removeStartBracket = JSON.stringify(object).replaceAll('{', '')
+        const removeEndBracket = removeStartBracket.replaceAll('}', '')
+        const addSpaceToResult = removeEndBracket.replaceAll(':', ': ')
+        return addSpaceToResult.replaceAll(',', '<br>')
+      }
+    }
   })
 )
 // ****************************** PRODUCTS LIST ****************************//
