@@ -9,8 +9,10 @@ import flash from 'connect-flash'
 import compression from 'compression'
 import passport from 'passport'
 import './middlewares/passport.js'
+// pasar todo a un index de cada carpeta e importar desde ahi, ejemplo todas las routes hacer un index.js y de ahi que se exporte todo
 import { loggerNonExistent } from './middlewares/loggerNonExistent.js'
 import { globalVars } from './middlewares/globalVars.js'
+import { errorHandler } from './middlewares/errorHandler.js'
 import { router as indexRouter } from './routes/index.routes.js'
 import { router as usersRouter } from './routes/users.routes.js'
 import { router as infoRouter } from './routes/info.routes.js'
@@ -95,3 +97,5 @@ io.on('connection', async (socket) => {
   })
 })
 // ****************************** END WEBSOCKET ****************************//
+// ERROR HANDLER
+app.use(errorHandler)

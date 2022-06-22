@@ -1,5 +1,4 @@
 import knex from 'knex'
-import logger from '../utils/logger.js'
 
 export class Container {
   constructor (config, table) {
@@ -12,7 +11,7 @@ export class Container {
     try {
       await this.knex.insert(obj).into(`${this.table}`)
     } catch (error) {
-      logger.error(error)
+      throw new Error(error.message)
     }
   }
 
@@ -20,7 +19,7 @@ export class Container {
     try {
       return await this.knex.select().from(`${this.table}`)
     } catch (error) {
-      logger.error(error)
+      throw new Error(error.message)
     }
   }
 }
