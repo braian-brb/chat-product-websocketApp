@@ -18,6 +18,7 @@ import flash from 'connect-flash'
 import passport from 'passport'
 import './middlewares/passport.js'
 import config from './config/index.config.js'
+import compression from 'compression'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -51,6 +52,7 @@ app.use(flash())
 // PASSPORT NECESITA QUE PRIMERO ESTE EL SESSION PORQUE HACE USO DE EL
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(compression())
 
 /* ------- GLOBAL VAR ------- */
 app.use((req, res, next) => {
