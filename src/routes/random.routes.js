@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   // mayuscula
   const { CANT = 100000000 } = req.query
   console.log(CANT)
-  const randomChild = fork('./src/child_process/random.child.js')
+  const randomChild = fork('./src/utils/childProcess/random.child.js')
   randomChild.send(CANT)
   randomChild.on('message', result => {
     res.render('apiRandom/apiRandom', { result, PORT })

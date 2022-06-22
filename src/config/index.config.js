@@ -10,7 +10,8 @@ const config = {
   MARIA_DB_PASSWORD: process.env.MARIA_DB_PASSWORD || 'password',
   MONGO_DB_HOST: process.env.MONGO_DB_HOST || 'mongodb://localhost:27017',
   MONGO_DB_USER_DATABASE: process.env.MONGO_DB_USER_DATABASE || 'usersDatabase',
-  MONGO_DB_SESSIONS_DATABASE: process.env.MONGO_DB_SESSIONS_DATABASE || 'sessions'
+  MONGO_DB_SESSIONS_DATABASE: process.env.MONGO_DB_SESSIONS_DATABASE || 'sessions',
+  SECRET_PHRASE: process.env.SECRET_PHRASE || 'coderhouse'
 }
 
 export default config

@@ -1,0 +1,5 @@
+warn: Non-existent resorce URL: /infoasd Method: GET
+warn: Non-existent resorce URL: /infoasdasdsadasdasd Method: GET
+warn: Non-existent resource URL: /users/signin/asdsad Method: GET
+warn: Non-existent resource URL: /users/signin/asdsad Method: GET
+warn: Non-existent resource URL: /random?cant=1 Method: GET
