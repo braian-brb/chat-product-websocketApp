@@ -8,21 +8,21 @@ import cookieParser from 'cookie-parser'
 import flash from 'connect-flash'
 import compression from 'compression'
 import passport from 'passport'
-import './middlewares/passport.js'
 // pasar todo a un index de cada carpeta e importar desde ahi, ejemplo todas las routes hacer un index.js y de ahi que se exporte todo
-import { loggerNonExistent } from './middlewares/loggerNonExistent.js'
-import { globalVars } from './middlewares/globalVars.js'
-import { errorHandler } from './middlewares/errorHandler.js'
-import { router as indexRouter } from './routes/index.routes.js'
-import { router as usersRouter } from './routes/users.routes.js'
-import { router as infoRouter } from './routes/info.routes.js'
-import { router as randomRouter } from './routes/random.routes.js'
-import { containerProducts } from './daos/products.js'
-import { containerMessages } from './daos/messages.js'
-import logger from './utils/logger.js'
-import { sessionMongo } from './utils/sessionMongo.js'
-import { randomNumberToJSON } from './utils/helpersHbs/randomNumberToJSON.js'
-// import morgan from 'morgan'
+import './middlewares/passport.js'
+import {
+  errorHandler,
+  globalVars,
+  loggerNonExistent
+} from './middlewares/index.js'
+import {
+  usersRouter,
+  homeRouter,
+  infoRouter,
+  randomRouter
+} from './routes/index.js'
+import { logger, randomNumberToJSON, sessionMongo } from './utils/index.js'
+import { containerMessages, containerProducts } from './daos/index.js'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -51,7 +51,7 @@ app.use(compression())
 app.use(globalVars)
 
 /* ------- ROUTES ------- */
-app.use(indexRouter)
+app.use(homeRouter)
 app.use('/users', usersRouter)
 app.use('/info', infoRouter)
 app.use('/api/random', randomRouter)

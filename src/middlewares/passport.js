@@ -31,9 +31,9 @@ passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
     done(err, user)
   })
-  /*
-    Se puede hacer sin cb con async await, ver como manejar el err
-    const user = await User.findById(id)
-    done (null, user)
-    */
 })
+/*
+  Se puede hacer sin cb con async await, ver como manejar el err
+  const user = await User.findById(id)
+  done (null, user)
+  */

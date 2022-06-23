@@ -2,7 +2,7 @@ import { httpServer } from './app.js'
 import config from './config/index.config.js'
 import cluster from 'cluster'
 import { cpus } from 'os'
-import './database.js'
+import './databases/database.js'
 
 const MODE = (config.MODE).toUpperCase()
 

@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { faker } from '@faker-js/faker'
-import { helpers } from '../middlewares/isAuth.js'
-const { isAuth } = helpers
+import { isAuth } from '../middlewares/index.js'
 
 export const router = Router()
 
