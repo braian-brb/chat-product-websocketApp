@@ -5,7 +5,7 @@ process.on('message', cant => {
   process.send(output)
 })
 
-function randomNumber (cant) {
+export function randomNumber (cant) {
   const output = {}
   const min = 1
   const max = 1000
