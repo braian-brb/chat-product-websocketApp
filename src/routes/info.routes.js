@@ -15,5 +15,6 @@ router.get('/', (req, res) => {
     numCPUs: cpus().length
 
   }
+  // console.log(info)
   res.render('info/info', info)
 })

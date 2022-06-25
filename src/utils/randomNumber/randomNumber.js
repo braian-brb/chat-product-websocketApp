@@ -1,4 +1,3 @@
-console.log(`Diferent Process ID every REQ, PID: ${process.pid}`)
 
 process.on('message', cant => {
   const output = randomNumber(cant)
