@@ -1,8 +1,8 @@
-import { options as mariaDB } from '../options/mariaDB.js'
-// import { options as postgreSQL } from '../options/postgreSQL.js'
+// import { options as mariaDB } from '../options/mariaDB.js'
+import { options as postgreSQL } from '../options/postgreSQL.js'
 import knexModule from 'knex'
 import logger from '../../utils/logger.js'
-const knex = knexModule(mariaDB);
+const knex = knexModule(postgreSQL);
 
 (async () => {
   try {
