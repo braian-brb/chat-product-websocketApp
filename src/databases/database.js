@@ -13,5 +13,5 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
-  .then(db => logger.info('database connected: ', db.connection.name))
+  .then(db => logger.info(`database connected: ${db.connection.name}`))
   .catch(err => { throw new Error(err) })
