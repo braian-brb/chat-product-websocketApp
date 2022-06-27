@@ -40,6 +40,5 @@ router.get('/logout', (req, res) => {
 // -------------- POST ---------------//
 router.post('/login', (req, res) => {
   req.session.name = req.body.name
-  console.log(req.session.name)
   res.redirect('/home')
 })

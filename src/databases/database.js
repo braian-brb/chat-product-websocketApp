@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import config from '../config/index.config.js'
+import logger from '../utils/logger.js'
 
 const {
   MONGO_DB_HOST,
@@ -12,5 +13,5 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
-  .then(db => console.log('database connected: ', db.connection.name))
-  .catch(err => console.log(err))
+  .then(db => logger.info('database connected: ', db.connection.name))
+  .catch(err => { throw new Error(err) })

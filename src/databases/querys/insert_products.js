@@ -1,5 +1,6 @@
 import { options as mariaDB } from '../options/mariaDB.js'
 import knexModule from 'knex'
+import logger from '../../utils/logger.js'
 const knex = knexModule(mariaDB)
 
 const products = [
@@ -33,8 +34,8 @@ const products = [
 (async () => {
   try {
     await knex('products').insert(products)
-    console.log('Insert products has been successfully')
+    logger.info('Insert products has been successfully')
   } catch (error) {
-    console.log(error)
+    throw new Error(error)
   }
 })()

@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import passport from 'passport'
+import logger from '../utils/logger.js'
 export const usersCtrl = {}
 
 usersCtrl.renderSignUpForm = (req, res) => {
@@ -8,7 +9,6 @@ usersCtrl.renderSignUpForm = (req, res) => {
 
 usersCtrl.singUp = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  console.log(confirmPassword)
   const errors = []
   if (password !== confirmPassword) {
     errors.push({
@@ -55,7 +55,7 @@ usersCtrl.signIn = passport.authenticate('local', {
 
 usersCtrl.logout = (req, res) => {
   req.logout((_err) => {
-    console.log('Logout success')
+    logger.info('Logout success')
   })
   req.flash('success_msg', 'You are logged out now')
   res.redirect('/users/signin')

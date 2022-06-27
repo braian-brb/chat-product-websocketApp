@@ -1,5 +1,6 @@
 import { options as sqliteDB } from '../options/sqliteDB.js'
 import knexModule from 'knex'
+import logger from '../../utils/logger.js'
 const knex = knexModule(sqliteDB)
 
 const messages = [
@@ -10,9 +11,9 @@ const messages = [
 (async () => {
   try {
     await knex('messages').insert(messages)
-    console.log('insert messages has been sucessfully')
+    logger.info('insert messages has been sucessfully')
   } catch (err) {
-    console.log(err)
+    throw new Error(err)
   } finally {
     knex.destroy()
   }

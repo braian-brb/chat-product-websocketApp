@@ -1,5 +1,6 @@
 import { options as mariaDB } from '../options/mariaDB.js'
 import knexModule from 'knex'
+import logger from '../../utils/logger.js'
 const knex = knexModule(mariaDB);
 
 (async () => {
@@ -11,9 +12,9 @@ const knex = knexModule(mariaDB);
       table.integer('price')
       table.string('thumbnail')
     })
-    console.log('Table products has been created')
+    logger.info('Table products has been created')
   } catch (err) {
-    console.log(err)
+    throw new Error(err)
   } finally {
     knex.destroy()
   }
