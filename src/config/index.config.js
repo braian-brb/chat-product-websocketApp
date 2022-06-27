@@ -4,7 +4,7 @@ dotenv.config()
 
 const args = parseArgs(process.argv.slice(2))
 const config = {
-  PORT: args.port || args.PORT || 8080,
+  PORT: process.env.PORT || args.port || args.PORT || 8080,
   MODE: args.mode || args.MODE || args.modo || args.MODO || 'fork',
   MARIA_DB_USER: process.env.MARIA_DB_USER || 'user',
   MARIA_DB_PASSWORD: process.env.MARIA_DB_PASSWORD || 'password',
