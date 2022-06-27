@@ -2,3 +2,5 @@ error: ERROR IN GET
 error: ERROR IN GET
 error: This is a error on getAll Method
 error: Error in getAll() Method
+error: select * from `products` - ER_NO_SUCH_TABLE: Table 'productsApp.products' doesn't exist
+error: select * from `products` - ER_NO_SUCH_TABLE: Table 'productsApp.products' doesn't exist
