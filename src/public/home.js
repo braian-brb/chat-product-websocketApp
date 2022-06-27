@@ -64,3 +64,4 @@ function renderMessages (messages) {
 socket.on('messages-list', (messages) => {
   renderMessages(messages)
 })
+console.log('Message for Heroku')
