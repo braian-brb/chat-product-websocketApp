@@ -13,3 +13,6 @@ warn: Non-existent resource URL: /favicon.ico Method: GET
 warn: Non-existent resource URL: /favicon.ico Method: GET
 warn: Non-existent resource URL: /favicon.ico Method: GET
 warn: Non-existent resource URL: /favicon.ico Method: GET
+warn: Non-existent resource URL: /favicon.ico Method: GET
+warn: Non-existent resource URL: /random?CANT=25 Method: GET
+warn: Non-existent resource URL: /randoms?CANT=25 Method: GET

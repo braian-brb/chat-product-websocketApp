@@ -1,6 +1,5 @@
 export const randomNumberToJSON = (object) => {
-  const removeStartBracket = JSON.stringify(object).replaceAll('{', '')
-  const removeEndBracket = removeStartBracket.replaceAll('}', '')
-  const addSpaceToResult = removeEndBracket.replaceAll(':', ': ')
+  const removeBrackets = JSON.stringify(object).replace(/[{}]/gi, '')
+  const addSpaceToResult = removeBrackets.replaceAll(':', ': ')
   return addSpaceToResult.replaceAll(',', '<br>')
 }
