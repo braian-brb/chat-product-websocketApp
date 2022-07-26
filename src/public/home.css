@@ -11,7 +11,7 @@
 
 .message-text {
   font-style: italic;
-  color: green;
+  color: rgb(25, 26, 24);
 }
 .container-nameSession {
   display: flex;

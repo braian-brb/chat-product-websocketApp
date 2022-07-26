@@ -2,8 +2,8 @@ import { httpServer } from './app.js'
 import config from './config/index.config.js'
 import cluster from 'cluster'
 import { cpus } from 'os'
-import './databases/database.js'
 import logger from './utils/logger.js'
+import './databases/database.js'
 
 const MODE = (config.MODE).toUpperCase()
 
