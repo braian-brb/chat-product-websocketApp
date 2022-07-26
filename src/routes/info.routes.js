@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { cpus } from 'os'
 
-export const router = Router()
+const router = Router()
 
 router.get('/', (req, res) => {
   const info = {
@@ -18,3 +18,5 @@ router.get('/', (req, res) => {
   // console.log(info)
   res.render('info/info', info)
 })
+
+export default router

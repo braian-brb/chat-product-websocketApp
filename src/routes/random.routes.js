@@ -3,7 +3,7 @@ import config from '../config/index.config.js'
 import { randomNumber } from '../utils/randomNumber/randomNumber.js'
 // import { fork } from 'child_process'
 
-export const router = Router()
+const router = Router()
 
 router.get('/', (req, res) => {
   const PORT = config.PORT
@@ -16,3 +16,5 @@ router.get('/', (req, res) => {
   //   res.render('apiRandom/apiRandom', { result, PORT })
   // })
 })
+
+export default router

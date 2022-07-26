@@ -15,14 +15,9 @@ import {
   globalVars,
   loggerNonExistent
 } from './middlewares/index.js'
-import {
-  usersRouter,
-  homeRouter,
-  infoRouter,
-  randomRouter
-} from './routes/index.js'
+import indexRouter from './routes/index.routes.js'
 import { logger, randomNumberToJSON, sessionMongo } from './utils/index.js'
-import { containerMessages, containerProducts } from './daos/index.js'
+import { productServices, messageServices } from './services/index.services.js'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -38,7 +33,7 @@ app.set('view engine', '.hbs')
 // app.use(morgan('dev'))
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(cookieParser())
 app.use(sessionMongo)
 app.use(flash())
@@ -51,10 +46,7 @@ app.use(compression())
 app.use(globalVars)
 
 /* ------- ROUTES ------- */
-app.use(homeRouter)
-app.use('/users', usersRouter)
-app.use('/info', infoRouter)
-app.use('/api/random', randomRouter)
+app.use(indexRouter)
 app.use(loggerNonExistent)
 /* ------- VIEWS ------- */
 app.engine(
@@ -73,13 +65,13 @@ app.engine(
 io.on('connection', async (socket) => {
   try {
     logger.info('a user connected')
-    const products = await containerProducts.getAll()
-    socket.emit('products-list', products)
+    // const products = await productServices.getAllProducts()
+    socket.emit('products-list', await productServices.getAllProducts())
 
     socket.on('new-product', async (product) => {
-      await containerProducts.save(product)
-      const products = await containerProducts.getAll()
-      io.sockets.emit('products-list', products)
+      await productServices.saveNewProduct(product)
+      // const products = await productServices.getAllProducts()
+      io.sockets.emit('products-list', await productServices.getAllProducts())
     })
   } catch (error) {
     logger.error(error)
@@ -87,13 +79,11 @@ io.on('connection', async (socket) => {
 })
 // ****************************** MESSAGE CENTER ****************************//
 io.on('connection', async (socket) => {
-  const messages = await containerMessages.getAll()
-  socket.emit('messages-list', messages)
+  socket.emit('messages-list', await messageServices.getAllMessages())
 
   socket.on('new-message', async (message) => {
-    await containerMessages.save(message)
-    const messages = await containerMessages.getAll()
-    io.sockets.emit('messages-list', messages)
+    await messageServices.writeNewMessage(message)
+    io.sockets.emit('messages-list', await messageServices.getAllMessages())
   })
 })
 // ****************************** END WEBSOCKET ****************************//

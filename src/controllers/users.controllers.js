@@ -1,6 +1,6 @@
-import User from '../models/User.js'
 import passport from 'passport'
 import logger from '../utils/logger.js'
+import userServices from '../services/user.services.js'
 export const usersCtrl = {}
 
 usersCtrl.renderSignUpForm = (req, res) => {
@@ -29,14 +29,15 @@ usersCtrl.singUp = async (req, res) => {
       confirmPassword
     })
   } else {
-    const user = await User.findOne({ email })
+    const user = await userServices.getUser(email)
+    console.log(user)
     if (user) {
       req.flash('error_msg', 'The email is alredy taken')
       res.redirect('/users/signup')
     } else {
-      const newUser = new User({ name, email, password })
-      newUser.password = await newUser.encryptPassword(password)
-      await newUser.save()
+      const newUser = await userServices.createNewUser(name, email, password)
+      newUser.password = await userServices.encryptPasswordNewUser(newUser, password)
+      await userServices.saveNewUser(newUser)
       req.flash('success_msg', 'You are registered')
       res.redirect('/users/signin')
     }
@@ -56,7 +57,7 @@ usersCtrl.signIn = passport.authenticate('local', {
 usersCtrl.logout = (req, res) => {
   req.logout((_err) => {
     logger.info('Logout success')
+    req.flash('success_msg', 'You are logged out now')
+    res.redirect('/users/signin')
   })
-  req.flash('success_msg', 'You are logged out now')
-  res.redirect('/users/signin')
 }

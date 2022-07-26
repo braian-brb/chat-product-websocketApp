@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { usersCtrl } from '../controllers/users.controllers.js'
 
-export const router = Router()
+const router = Router()
 
 const {
   renderSignUpForm,
@@ -18,3 +18,5 @@ router.get('/signin', renderSignInForm)
 router.post('/signin', signIn)
 
 router.get('/logout', logout)
+
+export default router

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { faker } from '@faker-js/faker'
 import { isAuth } from '../middlewares/index.js'
 
-export const router = Router()
+const router = Router()
 
 // ****************************** TEST FAKER ****************************
 router.get('/api/products-test', async (req, res) => {
@@ -42,3 +42,5 @@ router.post('/login', (req, res) => {
   req.session.name = req.body.name
   res.redirect('/home')
 })
+
+export default router
