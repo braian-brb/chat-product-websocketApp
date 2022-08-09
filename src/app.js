@@ -17,7 +17,7 @@ import {
 } from './middlewares/index.js'
 import indexRouter from './routes/index.routes.js'
 import { logger, randomNumberToJSON, sessionMongo } from './utils/index.js'
-import { productServices, messageServices } from './services/index.services.js'
+import { ProductsController, MessagesController } from './controllers/index.controllers.js'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -47,7 +47,7 @@ app.use(globalVars)
 
 /* ------- ROUTES ------- */
 app.use(indexRouter)
-app.use(loggerNonExistent)
+
 /* ------- VIEWS ------- */
 app.engine(
   '.hbs',
@@ -66,12 +66,12 @@ io.on('connection', async (socket) => {
   try {
     logger.info('a user connected')
     // const products = await productServices.getAllProducts()
-    socket.emit('products-list', await productServices.getAllProducts())
+    socket.emit('products-list', await ProductsController.getAllProducts())
 
     socket.on('new-product', async (product) => {
-      await productServices.saveNewProduct(product)
+      await ProductsController.saveNewProduct(product)
       // const products = await productServices.getAllProducts()
-      io.sockets.emit('products-list', await productServices.getAllProducts())
+      io.sockets.emit('products-list', await ProductsController.getAllProducts())
     })
   } catch (error) {
     logger.error(error)
@@ -79,13 +79,14 @@ io.on('connection', async (socket) => {
 })
 // ****************************** MESSAGE CENTER ****************************//
 io.on('connection', async (socket) => {
-  socket.emit('messages-list', await messageServices.getAllMessages())
+  socket.emit('messages-list', await MessagesController.getAllMessages())
 
   socket.on('new-message', async (message) => {
-    await messageServices.writeNewMessage(message)
-    io.sockets.emit('messages-list', await messageServices.getAllMessages())
+    await MessagesController.writeNewMessage(message)
+    io.sockets.emit('messages-list', await MessagesController.getAllMessages())
   })
 })
 // ****************************** END WEBSOCKET ****************************//
+app.use(loggerNonExistent)
 // ERROR HANDLER
 app.use(errorHandler)

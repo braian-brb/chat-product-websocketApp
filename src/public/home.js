@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const socket = io.connect()
 // ****************************** LIST PRODUCTS ****************************
 const template = Handlebars.compile(`
@@ -24,6 +26,11 @@ function renderProducts (products) {
 }
 
 function addProductForm () {
+  // let thumbnail = document.getElementById('thumbnail').value
+  // const thumbnailSplited = (thumbnailValue.split(':')[0]).toLowerCase()
+  // if (thumbnailSplited !== 'http' || thumbnailSplited !== 'https') {
+  //   thumbnail = 'https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png'
+  // }
   const productObj = {
     name: document.getElementById('name').value,
     price: document.getElementById('price').value,

@@ -1,7 +1,7 @@
 import passport from 'passport'
 import logger from '../utils/logger.js'
 import userServices from '../services/user.services.js'
-export const usersCtrl = {}
+const usersCtrl = {}
 
 usersCtrl.renderSignUpForm = (req, res) => {
   res.render('users/signup')
@@ -61,3 +61,5 @@ usersCtrl.logout = (req, res) => {
     res.redirect('/users/signin')
   })
 }
+
+export default usersCtrl

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { usersCtrl } from '../controllers/users.controllers.js'
+import { usersController } from '../controllers/index.controllers.js'
 
 const router = Router()
 
@@ -9,7 +9,7 @@ const {
   singUp,
   signIn,
   logout
-} = usersCtrl
+} = usersController
 
 router.get('/signup', renderSignUpForm)
 router.post('/signup', singUp)
