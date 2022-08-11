@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import express, { urlencoded, json } from 'express'
 import { engine } from 'express-handlebars'
 import path, { dirname } from 'path'
@@ -17,7 +18,8 @@ import {
 } from './middlewares/index.js'
 import indexRouter from './routes/index.routes.js'
 import { logger, randomNumberToJSON, sessionMongo } from './utils/index.js'
-import { ProductsController, MessagesController } from './controllers/index.controllers.js'
+import { ProductsControllerRest, MessagesControllerRest, messagesControllersGraphql, productsControllersGraphql } from './controllers/index.controllers.js'
+import config from './config/index.config.js'
 
 export const app = express()
 export const httpServer = new HttpServer(app)
@@ -61,17 +63,28 @@ app.engine(
     }
   })
 )
+// ******************************( GRAPHQL || REST API) (CONTROLLERS) ****************************//
+let productsControllers
+let messagesControllers
+console.log(config.API_CHOSEN)
+if (config.API_CHOSEN === 'graphql') {
+  productsControllers = productsControllersGraphql
+  messagesControllers = messagesControllersGraphql
+} else {
+  productsControllers = ProductsControllerRest
+  messagesControllers = MessagesControllerRest
+}
 // ****************************** PRODUCTS LIST ****************************//
 io.on('connection', async (socket) => {
   try {
     logger.info('a user connected')
     // const products = await productServices.getAllProducts()
-    socket.emit('products-list', await ProductsController.getAllProducts())
+    socket.emit('products-list', await productsControllers.allProducts())
 
     socket.on('new-product', async (product) => {
-      await ProductsController.saveNewProduct(product)
+      await productsControllers.addProduct(product)
       // const products = await productServices.getAllProducts()
-      io.sockets.emit('products-list', await ProductsController.getAllProducts())
+      io.sockets.emit('products-list', await productsControllers.allProducts())
     })
   } catch (error) {
     logger.error(error)
@@ -79,11 +92,11 @@ io.on('connection', async (socket) => {
 })
 // ****************************** MESSAGE CENTER ****************************//
 io.on('connection', async (socket) => {
-  socket.emit('messages-list', await MessagesController.getAllMessages())
+  socket.emit('messages-list', await messagesControllers.allMessages())
 
   socket.on('new-message', async (message) => {
-    await MessagesController.writeNewMessage(message)
-    io.sockets.emit('messages-list', await MessagesController.getAllMessages())
+    await messagesControllers.addMessage(message)
+    io.sockets.emit('messages-list', await messagesControllers.allMessages())
   })
 })
 // ****************************** END WEBSOCKET ****************************//

@@ -52,3 +52,10 @@ warn: Non-existent resource URL: /8 Method: GET
 warn: Non-existent resource URL: /1 Method: GET
 warn: Non-existent resource URL: /1 Method: GET
 warn: Non-existent resource URL: /1 Method: GET
+warn: Non-existent resource URL: /favicon.ico Method: GET
+warn: Non-existent resource URL: /graphql Method: GET
+warn: Non-existent resource URL: /graphql Method: GET
+warn: Non-existent resource URL: /graphql Method: GET
+warn: Non-existent resource URL: /favicon.ico Method: GET
+warn: Non-existent resource URL: /graphql Method: GET
+warn: Non-existent resource URL: /graphql Method: GET

@@ -1,11 +1,11 @@
 import messageServices from '../services/message.services.js'
 
 class MessagesController {
-  async getAllMessages () {
+  async allMessages () {
     return await messageServices.getAllMessages()
   }
 
-  async writeNewMessage (message) {
+  async addMessage (message) {
     return await messageServices.writeNewMessage(message)
   }
 }

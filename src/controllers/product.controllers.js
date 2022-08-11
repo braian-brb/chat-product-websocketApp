@@ -1,12 +1,24 @@
 import productServices from '../services/product.services.js'
 
 class ProductsController {
-  async getAllProducts () {
-    return await productServices.getAllProducts()
+  async allProducts () {
+    return await productServices.getAll()
   }
 
-  async saveNewProduct (product) {
-    return await productServices.saveNewProduct(product)
+  async addProduct (product) {
+    return await productServices.save(product)
+  }
+
+  async update (product) {
+    return await productServices.update(product)
+  }
+
+  async delete (id) {
+    return await productServices.delete(id)
+  }
+
+  async getById (id) {
+    return await productServices.getById(id)
   }
 }
 

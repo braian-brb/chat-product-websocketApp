@@ -22,7 +22,9 @@ const config = {
   MONGO_DB_HOST: process.env.MONGO_DB_HOST || 'mongodb://localhost:27017',
   MONGO_DB_USER_DATABASE: process.env.MONGO_DB_USER_DATABASE || 'usersDatabase',
   MONGO_DB_SESSIONS_DATABASE: process.env.MONGO_DB_SESSIONS_DATABASE || 'sessions',
-  SECRET_PHRASE: process.env.SECRET_PHRASE || 'coderhouse'
+  SECRET_PHRASE: process.env.SECRET_PHRASE || 'coderhouse',
+  // API
+  API_CHOSEN: args.api || args.API || 'graphql'
 }
 
 export default config

@@ -6,7 +6,7 @@ class MessageService {
   }
 
   async writeNewMessage (message) {
-    return await containerMessages.save(message)
+    return await containerMessages.create(message)
   }
 }
 

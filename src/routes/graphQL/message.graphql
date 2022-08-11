@@ -1,0 +1,47 @@
+# query{
+#   allMessages{
+#     email,
+#     message,
+#     id,
+#     date
+#   }
+# }
+
+
+# query{
+#  message(id: 5){
+#     email,
+#     message,
+#   }
+# }
+
+
+# mutation {
+#  addMessage(
+#    email: "example@gmail.com",
+#    message: "Message de ejemplo por graphiql",
+#  ) {
+#   message,
+#   id
+#  }  
+# }
+
+# mutation{
+#   updateMessage(
+#     id: 22,
+#   	data: {
+#       email: "updateado@gmail.com",
+#       message: "Message 17 de ejemplo updateado",
+#     }
+#   ){
+#     message,
+#     id
+#   }
+# }
+
+# mutation{
+#   deleteMessage(id: 19){
+#     email,
+#     message,
+#   }
+# }

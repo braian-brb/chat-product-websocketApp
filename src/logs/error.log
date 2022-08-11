@@ -7,3 +7,7 @@ error: select * from `products` - ER_NO_SUCH_TABLE: Table 'productsApp.products'
 error: containerProducts is not defined
 error: Unable to find the session to touch
 error: Unable to find the session to touch
+error: select *
+error: select *
+error: select *
+error: ProductsController.getAllProducts is not a function

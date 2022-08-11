@@ -1,9 +1,14 @@
-import ProductsController from './product.controllers.js'
-import MessagesController from './messages.controllers.js'
+import ProductsControllerRest from './product.controllers.js'
+import MessagesControllerRest from './messages.controllers.js'
 import usersController from './users.controllers.js'
 
+import productsControllersGraphql from './graphQL/products.controllers.graphql.js'
+import messagesControllersGraphql from './graphQL/message.controllers.graphql.js'
+
 export {
-  ProductsController,
-  MessagesController,
+  ProductsControllerRest,
+  MessagesControllerRest,
+  productsControllersGraphql,
+  messagesControllersGraphql,
   usersController
 }

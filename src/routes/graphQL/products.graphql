@@ -1,0 +1,48 @@
+# query{
+#   allProducts{
+#     name,
+#     price,
+#     id
+#   }
+# }
+
+
+# query{
+#  product(id: 4){
+#     name,
+#     price
+#   }
+# }
+
+
+# mutation {
+#  addProduct(
+#    name: "new Product",
+#    price: 33.12,
+#    thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"
+#  ) {
+#   name,
+#   id
+#  }  
+# }
+
+# mutation{
+#   updateProduct(
+#     id: 25,
+#   	data: {
+#       name: "updated product",
+#       price: 222,
+#       thumbnail: "http://example.com"
+#     }
+#   ){
+#     name,
+#     id
+#   }
+# }
+
+# mutation{
+#   deleteProduct(id: 2){
+#     name,
+# 		price
+#   }
+# }
